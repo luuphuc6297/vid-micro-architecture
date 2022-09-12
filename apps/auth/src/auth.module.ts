@@ -10,30 +10,30 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    UsersModule,
-    RmqModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-      validationSchema: Joi.object({
-        JWT_SECRET: Joi.string().required(),
-        JWT_EXPIRATION: Joi.string().required(),
-        MONGODB_URI: Joi.string().required(),
-      }),
-      envFilePath: './apps/auth/.env',
-    }),
-    JwtModule.registerAsync({
-      useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
-        signOptions: {
-          expiresIn: `${configService.get('JWT_EXPIRATION')}s`,
-        },
-      }),
-      inject: [ConfigService],
-    }),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy],
+    imports: [
+        DatabaseModule,
+        UsersModule,
+        RmqModule,
+        ConfigModule.forRoot({
+            isGlobal: true,
+            validationSchema: Joi.object({
+                JWT_SECRET: Joi.string().required(),
+                JWT_EXPIRATION: Joi.string().required(),
+                MONGODB_URI: Joi.string().required(),
+            }),
+            envFilePath: './apps/auth/.env',
+        }),
+        JwtModule.registerAsync({
+            useFactory: (configService: ConfigService) => ({
+                secret: configService.get<string>('JWT_SECRET'),
+                signOptions: {
+                    expiresIn: `${configService.get('JWT_EXPIRATION')}`,
+                },
+            }),
+            inject: [ConfigService],
+        }),
+    ],
+    controllers: [AuthController],
+    providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
