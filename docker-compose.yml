@@ -1,17 +1,17 @@
 services:
-  orders:
+  main-app:
     build:
       context: .
-      dockerfile: ./apps/orders/Dockerfile
+      dockerfile: ./apps/main-app/Dockerfile
       target: development
-    command: npm run start:dev orders
+    command: npm run start:dev main-app
     env_file:
-      - ./apps/orders/.env
+      - ./apps/main-app/.env
     depends_on:
       - mongodb-primary
       - mongodb-secondary
       - mongodb-arbiter
-      - billing
+      - project
       - auth
       - rabbitmq
     volumes:
@@ -19,14 +19,14 @@ services:
       - /usr/src/app/node_modules
     ports:
       - '3000:3000'
-  billing:
+  project:
     build:
       context: .
-      dockerfile: ./apps/billing/Dockerfile
+      dockerfile: ./apps/project/Dockerfile
       target: development
-    command: npm run start:dev billing
+    command: npm run start:dev project
     env_file:
-      - ./apps/billing/.env
+      - ./apps/project/.env
     depends_on:
       - mongodb-primary
       - mongodb-secondary
