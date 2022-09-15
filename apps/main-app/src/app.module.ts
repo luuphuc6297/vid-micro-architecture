@@ -1,6 +1,7 @@
-import { AuthModule, DatabaseModule, RmqModule } from '@app/commons';
+import { DatabaseModule, RmqModule } from '@app/commons';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from 'apps/auth/src/auth.module';
 import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -23,5 +24,6 @@ import { PROJECT_SERVICE } from './constants/services';
     ],
     controllers: [AppController],
     providers: [AppService],
+    exports: [AppService],
 })
 export class AppModule {}
