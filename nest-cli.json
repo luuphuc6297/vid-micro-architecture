@@ -44,6 +44,24 @@
       "compilerOptions": {
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
+    },
+    "commons/configs": {
+      "type": "library",
+      "root": "libs/commons/configs",
+      "entryFile": "index",
+      "sourceRoot": "libs/commons/configs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/commons/configs/tsconfig.lib.json"
+      }
+    },
+    "commons/src/configs": {
+      "type": "library",
+      "root": "libs/commons/src/configs",
+      "entryFile": "index",
+      "sourceRoot": "libs/commons/src/configs/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/commons/src/configs/tsconfig.lib.json"
+      }
     }
   }
 }

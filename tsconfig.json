@@ -23,6 +23,24 @@
       ],
       "@app/commons/*": [
         "libs/commons/src/*"
+      ],
+      "@app/configs": [
+        "libs/configs/src"
+      ],
+      "@app/configs/*": [
+        "libs/configs/src/*"
+      ],
+      "@app/commons/configs": [
+        "libs/commons/configs/src"
+      ],
+      "@app/commons/configs/*": [
+        "libs/commons/configs/src/*"
+      ],
+      "@app/commons/src/configs": [
+        "libs/commons/src/configs/src"
+      ],
+      "@app/commons/src/configs/*": [
+        "libs/commons/src/configs/src/*"
       ]
     }
   }
