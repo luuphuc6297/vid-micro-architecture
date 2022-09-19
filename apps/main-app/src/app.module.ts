@@ -1,4 +1,4 @@
-import { DatabaseModule, RmqModule } from '@app/commons';
+import { MongoModule, RmqModule } from '@app/commons';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from 'apps/auth/src/auth.module';
@@ -16,7 +16,7 @@ import { PROJECT_SERVICE } from './constants/services';
             }),
             envFilePath: './apps/main-app/.env',
         }),
-        DatabaseModule,
+        MongoModule,
         RmqModule.register({
             name: PROJECT_SERVICE,
         }),
