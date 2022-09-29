@@ -12,10 +12,16 @@ export class ProjectController {
         return this.projectService.getHello();
     }
 
+    // @EventPattern('project_created')
+    // @UseGuards(JwtAuthGuard)
+    // async handleOrderCreated(@Payload() data: any, @Ctx() context: RmqContext) {
+    //     this.projectService.bill(data);
+    //     this.rmqService.ack(context);
+    // }
+
     @EventPattern('project_created')
-    @UseGuards(JwtAuthGuard)
-    async handleOrderCreated(@Payload() data: any, @Ctx() context: RmqContext) {
-        this.projectService.bill(data);
+    async handleProjectCreated(@Payload() data: any, @Ctx() context: RmqContext) {
+        this.projectService.create(data);
         this.rmqService.ack(context);
     }
 }

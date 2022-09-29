@@ -2,6 +2,7 @@ import { MongoModule, RmqModule } from '@app/commons';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from 'apps/auth/src/auth.module';
+import { ProjectModule } from 'apps/project/src/project.module';
 import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -21,6 +22,7 @@ import { PROJECT_SERVICE } from './constants/services';
             name: PROJECT_SERVICE,
         }),
         AuthModule,
+        ProjectModule,
     ],
     controllers: [AppController],
     providers: [AppService],
