@@ -2,10 +2,11 @@ import { AuthModule, RmqModule } from '@app/commons';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import Joi from 'joi';
 import { ProjectController } from './project.controller';
 import { Project } from './project.entity';
 import { ProjectService } from './project.service';
+import * as Joi from 'joi';
+
 @Module({
     imports: [
         ConfigModule.forRoot({
