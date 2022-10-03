@@ -11,9 +11,6 @@ import * as Joi from 'joi';
 
 @Module({
     imports: [
-        MongoModule,
-        UsersModule,
-        RmqModule,
         ConfigModule.forRoot({
             isGlobal: true,
             validationSchema: Joi.object({
@@ -32,6 +29,9 @@ import * as Joi from 'joi';
             }),
             inject: [ConfigService],
         }),
+        MongoModule,
+        UsersModule,
+        RmqModule,
     ],
     controllers: [AuthController],
     providers: [AuthService, LocalStrategy, JwtStrategy],

@@ -1,9 +1,9 @@
 import { JwtAuthGuard, RmqService } from '@app/commons';
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices';
 import { ProjectService } from './project.service';
 
-@Controller()
+@Controller('projects')
 export class ProjectController {
     constructor(private readonly projectService: ProjectService, private readonly rmqService: RmqService) {}
 
@@ -20,8 +20,9 @@ export class ProjectController {
     // }
 
     @EventPattern('project_created')
+    @Post()
     async handleProjectCreated(@Payload() data: any, @Ctx() context: RmqContext) {
-        // this.projectService.create(data);
+        this.projectService.create(data);
         this.rmqService.ack(context);
     }
 }
