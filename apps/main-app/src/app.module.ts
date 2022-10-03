@@ -1,12 +1,14 @@
 import { MongoModule, RmqModule } from '@app/commons';
+import { MysqlModule } from '@app/commons/database/mysql/database.module';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'apps/auth/src/auth.module';
 import { ProjectModule } from 'apps/project/src/project.module';
+import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PROJECT_SERVICE } from './constants/services';
-import * as Joi from 'joi';
 
 @Module({
     imports: [
@@ -18,10 +20,11 @@ import * as Joi from 'joi';
             }),
             envFilePath: './apps/main-app/.env',
         }),
-        MongoModule,
         RmqModule.register({
             name: PROJECT_SERVICE,
         }),
+        MongoModule,
+        MysqlModule,
         AuthModule,
         ProjectModule,
     ],

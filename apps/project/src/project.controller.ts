@@ -21,7 +21,7 @@ export class ProjectController {
 
     @EventPattern('project_created')
     async handleProjectCreated(@Payload() data: any, @Ctx() context: RmqContext) {
-        this.projectService.create(data);
+        // this.projectService.create(data);
         this.rmqService.ack(context);
     }
 }

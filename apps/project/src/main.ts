@@ -8,7 +8,6 @@ async function bootstrap() {
 
     app.connectMicroservice(rmqService.getOptions('PROJECT'));
 
-    console.log('project');
     await app.startAllMicroservices();
 }
 bootstrap();

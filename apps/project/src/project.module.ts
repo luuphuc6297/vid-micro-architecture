@@ -2,10 +2,10 @@ import { AuthModule, RmqModule } from '@app/commons';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProjectController } from './project.controller';
-import { Project } from './project.entity';
-import { ProjectService } from './project.service';
 import * as Joi from 'joi';
+import { ProjectController } from './project.controller';
+import { ProjectEntity } from './project.entity';
+import { ProjectService } from './project.service';
 
 @Module({
     imports: [
@@ -18,7 +18,7 @@ import * as Joi from 'joi';
         }),
         RmqModule,
         AuthModule,
-        TypeOrmModule.forFeature([Project]),
+        TypeOrmModule.forFeature([ProjectEntity]),
     ],
     controllers: [ProjectController],
     providers: [ProjectService],
